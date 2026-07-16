@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>하이퍼링크 및 멀티미디어태그</title>
+    </head>
+    <body>
+        <!--
+            * 하이퍼링크 태그
+            a (anchor): 다른 웹 페이지나 파일로 연결되는 하이퍼링크를 만드는 태그
+            - 속성
+            1) href: 이동할 페이지의 URL 주소 또는 파일 경로 지정
+            2) target: 링크가 열릴 창의 위치를 지정
+                "_self": 현재 창에서 연결 (기본값)
+                "_blank": 새 탭(창)에서 연결                
+        -->
+        <h3>하이퍼링크 태그</h3>
+        <p>
+            현재 창에서 열기: 
+            <a href="https://www.kh-academy.co.kr" target="_self">교육원 홈페이지</a>
+        </p>
+
+        <p>
+            새 탭에서 열기:
+            <a href="https://www.kh-academy.co.kr" target="_blank">교육원 홈페이지</a>
+        </p>
+
+        <hr>
+
+        <!--
+            * 이미지 태그
+            img: 이미지를 표시하고자 할 때 사용하는 태그 (단독태그/빈태그)
+            - 속성
+            1) src: 이미지 파일이 위치한 주소 또는 경로 지정
+                - 상대경로: 현재 문서를 기준으로 상대적으로 찾은 경로
+                    (현재 위치: ./ (생략 가능), 상위 폴더: ../)
+                - 절대경로: 최상위 폴더로부터 전체 경로, 이미지 서버의 주소
+            2) alt: 이미지가 깨졌을 때 표시하는 글자, 스크린리더가 읽어주는 설명
+        -->
+        <h3>이미지 태그</h3>
+        <!-- 웹 주소(이미지 서버)를 사용하여 표시 -->
+        <img src="https://cdn.pixabay.com/photo/2019/09/24/10/12/puppy-4500926_1280.jpg"
+            alt="강아지 4마리가 서로를 베고 누워 자는 모습... 귀여웟" width="1200"><br>
+        <!-- 현재 파일과 같이 존재하는 이미지 표시-->
+        <img src="public/4dante.jpg" alt="세월이 오면 좀 피하기도 하고 그래라" width="1200"><br>
+        <img src="public/dante_devil.jpg" alt="좋다..." width="1200"><br>
+
+        <!--
+            * 오디오/비디오 태그
+            audio: 음악 파일을 표시하고자 할 때 사용하는 태그
+            video: 비디오 파일을 표시하고자 할 때 사용하는 태그
+
+            - 속성
+            1) src: 재생할 미디어 파일의 주소 또는 경로 지정
+            2) controls: 컨트롤 바(제어기)를 화면에 표시. 속성명만 작성
+            3) poster: 비디오 태그 전용 속성으로 썸네일 이미성 지정
+        -->
+        <h3>오디오 및 비디오 태그</h3>
+        <audio src="public/DMC3_DNC.mp3" controls>오디오 재생을 지원하지 않습니다.</audio><br>
+        <video src="public/wannaStrike.mp4" controls width="1200">비디오 재생을 지원하지 않습니다.</video><br>
+
+        <hr>
+        <!--
+            * 외부 프레임 삽입 태그
+            iframe: 현재 페이지 내부의 특정 영역에 다른 웹페이지를 삽입하는 태그
+            - 속성
+            1) src: 삽입하고자 하는 페이지의 주소를 지정
+        -->
+        <h3>외부 프레임 삽입 태그</h3>
+        <h4>교육원 홈페이지</h4>
+        <iframe src="https://www.kh-academy.co.kr" width="1280" height="720"></iframe>
+
+        <!--
+            유튜브 영상 삽입
+            => 유튜브 영상 페이지 > 공유 > 퍼가기
+        -->
+        <iframe width="1280"
+                height="720"
+                src="https://www.youtube.com/embed/ye6P4FbHIe4?si=4yjLtKWD1OAjWkoN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+        </iframe>
+    </body>
+</html>
