@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260721 CSS 기본문법 연습_문제</title>
+
+</head>
+<body>
+    <!-- 
+        * TODO: 아래 인라인 스타일을 내부 스타일로 변경해보자 *
+          (스타일 적용 방식을 변경하는 것으로 화면은 기존과 동일하게 표시됩니다)
+    -->
+    <header>
+        <nav style="background-color: beige;">
+            <a href="#" style="padding:1.5em; text-decoration: none; color: #666;">HOME</a>
+            <a href="#" style="padding:1.5em; text-decoration: none; color: #666;">프로필</a>
+            <a href="#" style="padding:1.5em; text-decoration: none; color: #666;">스킬 목록</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2 style="color:lightpink;">프로필</h2>
+
+            <div class="section-content" style="height: 450px;">
+                <div>
+                    <img src="public/image.png" alt="프로필 이미지" width="250">
+                </div>
+                <p>
+                    안녕하세요 반갑습니다. 저는 {이름}입니다. <br>
+                    프로그래밍 공부를 시작한 지 2개월차 된 <span class="f-yellow" style="color:#ffd400; font-weight: 600;">삐약이 개발자</span>입니다. <br>
+                    매일 매일 새로운 것들을 공부하는 게 힘들지만, 반면에 재밌게 학습하고 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="color:lightpink;">학습한 스킬 목록</h2>
+            <div class="section-content" style="height: 350px;">
+                <ul style="list-style-type: square; color: darkmagenta; font-size: 20px;">
+                    <li>Java</li>
+                    <li>SQL (Oracle)</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
