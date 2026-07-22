@@ -8,49 +8,36 @@
     <!-- 폰트어썸 아이콘 CDN -->
     <script src="https://kit.fontawesome.com/3dd9964fc0.js" crossorigin="anonymous"></script>
 
-    <style>
+    <!-- 외부 css 파일 연결 -->
+     <link rel="stylesheet" href="./styles/style.css">
 
-        ul, ol {
-            list-style: none;
-
-        }
-
-        .menu {
-            display: flex;
-        }
-
-        .footer-menu {
-            display: flex;
-        }
-    </style>
 </head>
 <body>
     <!-- 상단 영역 -->
     <header>
         <!-- 로고 / 검색창 / 로그인 / 회원가입 버튼-->
-        <div>
-            <!-- 로고 -->
-            <a href="#" class="logo">KH 아카데미</a>
+        
+        <!-- 로고 -->
+        <a href="#" class="logo">KH <span>아카데미</span></a>
 
-            <!-- 검색창 -->
-            <div class="search">
-                <input type="text" placeholder="과정을 검색하세요...">
-                <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <!-- 검색버튼 대신 검색 아이콘 넣은 것임 -->
-                </button>
-            </div>
-
-            <!-- 로그인 / 회원가입 버튼-->
-            <div class="header-util">
-                <a href="#" class="login">로그인</a>
-                <a href="#" class="join">회원가입</a>
-            </div>
-
+        <!-- 검색창 -->
+        <div class="search">
+            <input type="text" placeholder="과정을 검색하세요...">
+            <button class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <!-- 검색버튼 대신 검색 아이콘 넣은 것임 -->
+            </button>
         </div>
 
-        <!-- 메뉴 -->
-        <nav class="menu">
+        <!-- 로그인 / 회원가입 버튼-->
+        <div class="header-util">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+        </div>
+    </header>
+
+    <!-- 메뉴 -->
+    <nav class="menu">
         <ul>
             <li>
                 <a href="#">교육과정</a>
@@ -61,13 +48,13 @@
                     <li><a href="#">데이터 분석가</a></li>
                 </ul>
             </li>
+        
             <li><a href="#">교육원 소개</a></li>
             <li><a href="#">취업지원</a></li>
             <li><a href="#">산학연계</a></li>
             <li><a href="#">상담센터</a></li>
         </ul>
     </nav>
-    </header>
 
     <!-- 메인 영역 -->
     <main>
@@ -82,8 +69,10 @@
             
             <!--공지 띠 영역 -->
             <div class="notice">
-                <span class="tag">공지</span>
-                <span>7월 개강 과정 수강신청이 시작되었습니다.</span>
+                <div>
+                    <span class="tag">공지</span>
+                    <span>7월 개강 과정 수강신청이 시작되었습니다.</span>
+                </div>
                 <a href="#" class="more">더보기</a>
             </div>
 
@@ -120,9 +109,9 @@
                 <h3>로그인</h3>
                 <input type="text" placeholder="아이디..."> <br>
                 <input type="password" placeholder="비밀번호..."> <br>
-                <button>로그인</button><br>
+                <button class="btn">로그인</button><br>
 
-                <div>
+                <div class="login-links">
                     <a href="#">아이디 찾기</a>
                     <a href="#">비밀번호 찾기</a>
                     <a href="#">회원가입</a>
@@ -130,13 +119,13 @@
             </div>
 
             <!-- 바로가기 링크 모음 -->
-            <div>
+            <div class="quick">
                 <h3>바로가기</h3>
                 <ul>
-                    <li><a href="#">수강신청 안내</a></li>
-                    <li><a href="#">국비지원 자격여부</a></li>
-                    <li><a href="#">취업후기 보기</a></li>
-                    <li><a href="#">상담예약</a></li>
+                    <li><a href="#">수강신청 안내 <span>&rarr;</span></a></li>
+                    <li><a href="#">국비지원 자격여부 <span>&rarr;</span></a></li>
+                    <li><a href="#">취업후기 보기 <span>&rarr;</span></a></li>
+                    <li><a href="#">상담예약 <span>&rarr;</span></a></li>
                 </ul>
             </div>
 
@@ -147,13 +136,11 @@
     <!-- 하단 영역 -->
     <footer>
         <!-- 하단 링크 영역 -->
-        <div class="footer-menu">
-            <ul>
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">인재채용</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
+        <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">인재채용</a>
+                <a href="#">고객센터</a>
         </div>
 
         <!-- 지점 정보 -->
@@ -163,7 +150,7 @@
         </div>
 
         <!-- 저작권 정보 -->
-        <p class="copyright">
+        <p class="copy">
             Copyright &copy; KH Information Educational Institute All Rights Reserved
         </p>
     </footer>
