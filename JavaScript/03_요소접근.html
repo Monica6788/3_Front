@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access to DOM Elements</title>
+
+    <style>
+        .area {
+            border: 1px dotted pink;
+            width: 300px;
+            min-height: 50px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Access to DOM Elements</h1>
+    <h3>Access to ID by IdName - getElementById(idName)</h3>
+    <div class="area" id="area1"></div>
+    <button onclick="accessId();">Access to ID</button>
+
+    <script>
+        function accessId() {
+            // Access to the element whose idName is "area1" => return one DOM element
+            // 아이디명이 area1인 요소 접근 => DOM 객체 1개 반환
+            const area1 = document.getElementById("area1");
+
+            // Can be manipulated via the Object when properly accessed
+            // 접근을 정상적으로 했을 경우 해당 객체를 통해 조작 가능
+            area1.textContent = "Access to ID succeeded";
+            area1.style.backgroundColor = "lightgreen";
+        }
+    </script>
+
+    <h3>Access by TagName - getElementByTagName(tagName)</h3>
+    <ul>
+        <li>li tag content</li>
+        <li>li tag content</li>
+        <li>li tag content</li>
+    </ul>
+
+    <button onclick="accessTag();">Access by TagName</button>
+
+    <script>
+        function accessTag() {
+            // Access all elements with the TagName is "li" 
+            // => Return as an HTMLCollection
+            // 태그명이 li인 모든 요소 접근 => HTMLCollection 형태로 반환
+
+            const liList = document.getElementsByTagName("li");
+
+            // n(Element) = .length
+            // 요소 개수: .length
+            console.log(`number of li elements: ${liList.length}`);
+
+            // for(initialization; condition; update) { content to repeat; }
+            for (let i = 0; i < liList.length; i++) {
+                // Update the content in <li> => liList[i]
+                    if (i == 1) {
+                        liList[i].textContent = i + "st li";
+                    } else if (i == 2) {
+                        liList[i].textContent = i + "nd li";
+                    } else if (i == 3) {
+                        liList[i].textContent = i + "rd li";
+                    } else {
+                        liList[i].textContent = i + "th li";
+                    }
+                    console.log(liList[i].textContent);
+            }
+        }
+    </script>
+
+    <h3>Access by CSS Selector</h3>
+    <h4>querySelector & querySelectorAll</h4>
+
+    <div id="area2">Lunch Menu: lunchbox from home</div>
+    <p class="item">Item A</p>
+    <p class="item">Item B</p>
+    <p class="item">Item C</p>
+    <button onclick="accessSelector();">Access by Selector</button>
+
+    <script>
+        function accessSelector() {
+            // select element #area2
+            const one = document.querySelector("#area2");
+            console.log(one.textContent);
+            // bold text => font-weight
+            one.style.fontWeight = "bold";
+            // if matching element exists: return that element
+            // if no matching element exists: return null
+
+            // select elements .item
+            const all = document.querySelectorAll(".item");
+            for (let i = 0; i < all.length; i++) {
+                console.log(all[i].textContent);
+            }
+            // if matching elements exist: return NodeList (NodeList.length >= 1)
+            // if no matching elements exist: return NodeList (NodeList.length == 0)
+
+            // NodeList can use method 'forEach'
+            all.forEach(function(item, index) {
+                // Change color of each element
+                item.style.color = "red";
+
+            })
+        }
+    </script>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

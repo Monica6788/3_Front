@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Data IO</title>
+
+    <style>
+        .area {
+            border: 1px solid teal;
+            min-height: 60px;
+            padding: 8px;
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+<body>
+    <h2>JavaScript Elemental Objects(자바스크립트 기본 객체)</h2>
+    <ul>
+        <li>
+            window: 브라우저 창마다 생성되는 최상위 객체<br>
+            (window. 함수 사용 시 window. 생략 가능) <br>
+            window: Top-level object that is created for each browser window/tab<br>
+            (The 'window.' can be omitted when calling its functions/methods)
+        </li>
+        <li>
+            document: window.document <br>
+            현재 브라우저에 표시된 DOM을 관리하는 객체 <br>
+            Object that manages DOM on current browser
+        </li>
+    </ul>
+
+    <hr>
+
+    <h1>Data I/O</h1>
+    <h2>Data Output Method</h2>
+    <p>
+        Output format: alert / console.log / document.write
+    </p>
+
+    <button onclick="outputTest();">print on document</button>
+    <script>
+        function outputTest() {
+            document.write("<h1>Lunch Menu: rice with boiled eggs and cabbage</h1>")
+            // Overwrite an existing HTML document (AVOID using...)
+        }
+    </script>
+
+    <h3>Data Output on a specific DOM element</h3>
+    <p>
+        Output format: innerHTML / innerText / textContent
+    </p>
+
+    <div id="area1" class="area">Existing Content</div>
+    <button onclick="innerHTMLTest();">using innerHTML</button>
+    <button onclick="innerTextTest();">using innerText</button>
+    <button onclick="textContentTest();">using textContent</button>
+
+    <script>
+        function innerHTMLTest() {
+            // Output location: div
+            const area1 = document.getElementById("area1");
+
+            area1.innerHTML = "<h3>Content <i>has been</i> changed<br>LOL</h3>";
+            // Output(insert) into the designated element by interpreting HTML tags
+            // 지정한 요소 내부에 HTML 태그를 해석하여 출력 (삽입)
+            // Be cautious of XSS (Cross-Site Scripting) attacks
+            // if direct input from external users is allowed
+            // 외부 사용자의 입력을 직접 넣게 되는 경우 
+            // XSS(교차 사이트 스크립팅)공격 위험이 있으므로 주의
+
+            console.log(area1.innerText);
+            console.log(area1.textContent);
+
+            // innerText vs textContent
+            // innerText:
+            // 내용에 포함된 태그가 해석된 형태로, 실제 사용자가 보는 텍스트를 가져옴
+            // Get the visible text that users actually see(with all inner tags interpreted)
+            // textContent:
+            // 내용에 포함된 태그가 해석되지 않고, 모든 텍스트를 그 자체로 가져옴.
+            // 별도의 계산을 거치지 않으므로 성능 면에서 textContent 권장
+            // Get the raw text as-is (without interpreting any tags)
+            // In the interest of performance, textContent is recommended
+            // because it doesn't contain extra processing
+        }
+
+        function innerTextTest() {
+            // Output location: div#area1
+            const area1 = document.getElementById("area1");
+
+            area1.innerText = "<h3>Content has been changed###</h3>";
+
+            console.log(area1.innerText);
+        }
+
+        function textContentTest() {
+            // Output location: div#area1
+            const area1 = document.getElementById("area1");
+
+            area1.textContent = "<h3>Content has been changed</h3>";
+
+            console.log(area1.textContent);
+        }
+    </script>
+
+    <h2>Data Input Methods</h2>
+    <p>
+        prompt("메시지"): 사용자에게 메시지와 함께 입력창을 가지고 있는 창을 표시 <br>
+        - [확인] 클릭 시: 입력된 값(문자열) 반환 <br>
+        - [취소] 클릭 시: null 반환 <br><br>
+        prompt("message"): Display a Dialog box with message and an input box to users <br>
+        - If [OK] is clicked: return the input value(String) <br>
+        - If [cancel] is clicked: return null
+    </p>
+    <button onclick="promptTest();">Input</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function promptTest() {
+            // get name
+            const name = prompt("Enter your name.");
+            // get age
+            const age = prompt("Enter your age.");
+            // show the input values in div area
+            const area2 = document.querySelector("#area2");
+
+            // if name or age is null, print "Input has been cancelled"
+            if (name == null || age == null) {
+                area2.textContent = "Input has been cancelled";
+                return; /* closing method */
+            }
+
+            area2.textContent = "name: " + name + ", age: " + age;
+            area2.textContent = `name: ${name}, age: ${age}`;
+        }
+    </script>
+
+    <h4>Read Value of Input Element</h4>
+    ID: &nbsp; <input type="text" id="userId"> <br>
+    PW: <input type="password" id="userPw"> <br>
+    <button onclick="inputTest();">Read InputValue</button>
+    <div class="area" id="area3"></div>
+    
+    <script>
+        function inputTest() {
+            // select element of ID input (#userId)
+            const idElement = document.querySelector("#userId");
+            // select element of PW input (#userPw)
+            const pwElement = document.querySelector("#userPw");
+
+            // Input value of each element
+            const id = idElement.value;
+            const pw = pwElement.value;
+
+            // Display input values on #area3
+            document.querySelector("#area3").textContent = `ID: ${id}, PW: ${pw}`;
+        }
+    </script>
+
+    <h2>Dynamically display images</h2>
+    <button onclick="showImage();">show image</button>
+    <div class="area" id="imgArea"></div>
+
+    <script>
+        function showImage() {
+            // Add an img tag by using innerHTML
+            // output location: #imgArea
+            document.querySelector("#imgArea").innerHTML = 
+                `<img src="../HTML+CSS/public/image.png" alt="Test Image" width=100%>`;
+        }
+    </script>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

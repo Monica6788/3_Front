@@ -8,8 +8,47 @@
     <link rel="stylesheet" href="page.css">
 </head>
 <body>
-    <!-- header area: logo, serach bar -->
-     
+    <!-- header area: logo, serach bar, logout/delete account buttons -->
+    <header>
+        <!-- logo -->
+        <a href="#" class="logo">My Plan</a>
+
+        <!-- search bar -->
+        <div class="search">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <!-- logout/delete account buttons -->
+        <div class="header-links">
+            <a href="#">로그아웃</a>
+            <a href="#">회원탈퇴</a>
+        </div>
+    </header>
+
+    <!-- main area: navigation bar, planlist -->
+    <main>
+        <!-- navigation bar -->
+        <nav class="menu">
+            <ul class="user-info">
+                <li>username</li>
+                <li>useremail</li>
+            </ul>
+            <ul class="add-plan">
+                <li>
+                    <span>일정 추가</span><a href="#">+</a>
+                </li>
+                <li>
+                    <span>기념일 추가</span><a href="#">+</a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+
+    <!-- footer area: links, Developer info,Copyright info -->
+
     <script src="main.js"></script>
 </body>
 </html>

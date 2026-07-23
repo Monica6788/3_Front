@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Element Manipulation</title>
+    <style>
+        body {
+            background-color: honeydew;
+        }
+        .area {
+            border: 1px double dodgerblue;
+            width: 300px;
+            min-height: 50px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        .active {
+            background-color: powderblue;
+        }
+
+        .on {
+            font-weight: bold;
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM Element Manipulation</h1>
+    <div id="box" class="area">Box area</div>
+    <button onclick="change();">change</button>
+
+    <script>
+        function change() {
+            // Change font color of Box area into blue, background-color of Box area into grey
+            const box = document.querySelector("#box");
+            box.style.color = "mediumblue";
+            box.style.backgroundColor = "lightslategray";
+
+            // Change specific Attribute
+            // data-___ : Custom Attribure
+            box.setAttribute("data-role", "admin");
+            // setAttribute(Attribute-name, Attribute-value)
+
+            // Read the value of Attribute
+            // Check current background-color
+            console.log(box.style.backgroundColor);
+            // Read the value of Attribute 'data-role'
+
+            console.log(box.getAttribute('data-role'));
+        }
+    </script>
+
+    <h3>Control via ClassList</h3>
+    <div class="area" id="classBox">classBox area</div>
+    <button onclick="addAndRemove('add');">add</button>
+    <button onclick="addAndRemove('remove');">remove</button>
+    <button onclick="toggle();">toggle</button>
+    <button onclick="checkClass();">check</button>
+
+    <script>
+        function addAndRemove(type) {
+            // type is the name of variable
+            console.log(type);  // 'add' or 'remove'
+
+            // Select elemetns in classBox area
+            const box = document.querySelector('#classBox');
+
+            // if type value == 'add' then add class 'active'
+            // if type value == 'remove' then remove class 'active'
+            switch (type) {
+                case 'add': // type == 'add'
+                    box.classList.add('active');
+                    break;
+                case 'remove': // type == 'remove'
+                    box.classList.remove('active');
+                    break;
+            }
+
+            // Check classList list
+            console.log(box.classList);
+            // Check the full class String
+            console.log(box.className);
+        }
+
+        function toggle() {
+            // toggle = add + remove
+            // if the matching class does not exist: add it, if exists: remove it
+
+            const box = document.querySelector("#classBox");
+            box.classList.toggle('active');
+        }
+
+        function checkClass() {
+            // 'contains()': Returns a boolean indicating whether matching class exists
+            //                    (true / false)
+            const box = document.querySelector("#classBox");
+            const hasActive = box.classList.contains('active');
+            console.log("Existence of 'active' : " + hasActive);
+
+            if (hasActive) {
+                alert('"active" class exists');
+            } else { alert('No "active" class exists'); }
+        }
+    </script>
+    <h3>Create, Add, Remove Element(Node)</h3>
+    <div class="area" id="wrap"></div>
+    <button onclick="addElement();">Add Element</button>
+    <button onclick="removeLast();">Remove Last Element</button>
+    <button onclick="removeAll();">Remove All Elements</button>
+
+    <script>
+        function addElement() {
+            // Create a new DOM element: h6
+            // document.createElement(TagName)
+
+            const h6Element = document.createElement("h6");
+            h6Element.textContent = "Appended Element";
+
+            // Specify Target: #wrap
+            const wrap = document.querySelector("#wrap");
+
+            // Append DOM element as the last child of the parent element(#wrap)
+            // target.appendChild(elementToAppend)
+            wrap.appendChild(h6Element);
+        }
+
+        function removeLast() {
+            // Select all the h6 tags in the '#wrap' element
+            const h6ListB = document.querySelectorAll("#wrap h6");
+            console.log("Before delete: " + h6ListB.length);
+
+            if (h6List.length > 0) {
+                // If appended elements exist
+                // lastElement.remove();
+                h6List[h6ListB.length - 1].remove();
+            } else {
+                // If no appended elements exist
+                alert("No items to delete");
+            }
+            const h6ListA = document.querySelectorAll("#wrap h6");
+
+            console.log("After delete: " + h6ListA.length);
+        }
+
+        function removeAll() {
+            const wrap = document.querySelector("#wrap");
+            wrap.textContent = "";
+            // Clear all inner content of the '#wrap' element (= Remove All)
+        }
+    </script>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
