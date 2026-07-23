@@ -196,6 +196,11 @@ main section {
     padding: 24px;
 
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.blocks .block:hover {
+    transform: translateY(-5px);
 }
 
 .blocks #period {
