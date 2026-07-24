@@ -11,6 +11,10 @@ body {
     background-color: aliceblue;
     color: #1a1b1c;
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* 푸터 영역을 바닥에 붙이기 위해 바디를  */
 }
 
 ul, li { list-style: none;}
@@ -73,7 +77,15 @@ header {
 }
 
 .search input:focus {
-    background-color: gainsboro;
+    border-top: 1px solid #27c9ff;
+    border-left: 1px solid #27c9ff;
+    border-bottom: 1px solid #27c9ff;
+}
+
+.search input:focus +button {
+    border-top: 1px solid #27c9ff;
+    border-right: 1px solid #27c9ff;
+    border-bottom: 1px solid #27c9ff;
 }
 
 .search button {
@@ -105,7 +117,8 @@ header {
 main {
     display: flex;
     gap: 10px;
-    height: 82vh;
+
+    flex: 1;
 }
 
 main nav {
