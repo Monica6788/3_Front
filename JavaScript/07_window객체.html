@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object</title>
+    <style>
+        .area {
+            border: 1px, solid, dodgerblue;
+            width: 300px;
+            min-height: 50px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Window Object</h1>
+    <p>
+        The top-level object in JavaScript that controls the browser window. <br>
+        It includes not only the 'document', but also 'location', 'screen', 'navigator', 'history', etc. <br>
+        자바스크립트의 최상위 객체로, 브라우저 창을 제어 <br>
+        document 외에도 location, screen, navigator, history 등의 객체를 포함
+    </p>
+
+    <h3>Timer Function (setTimeout / setInterval)</h3>
+    <p>
+        - setTimeout: Runs a function once after a specified delay <br>
+        - setInterval: Repeatedly runs a function at specified time inervals <br>
+        - setTimeout : 지정한 시간이 지난 후 함수를 1회 실행 <br>
+        - setInterval : 지정한 시간 간격마다 함수를 반복 실행
+    </p>
+
+    <button onclick="timerTest();">Run once after 2sec</button>
+    <button onclick="startClock();">Start Clock</button>
+    <button onclick="stopClock();">Stop Clock</button>
+    <div class="area" id="area1"></div>
+
+    <script>
+        function timerTest() {
+            console.log("timerTest is running");
+
+            // setTimeout(function-to-run, milisec);
+            const timer = setTimeout(function(){
+                document.querySelector("#area1").style.backgroundColor = "honeydew";
+            }, 2000);
+
+            // Cancels the pending timer function 대기 중인 타이머 함수를 취소
+            // clearTimeout(timer);
+
+            console.log("timerTest is finished");
+
+            // In Java: Synchronous Flow 흐름 방식 동기식
+            // => The next action is executed only after the current action completes
+            //  (작업이 진행되면 완전히 끝난 후 다음 작업 실행)
+            // In JavaScript: Asynchronous Flow 비동기 방식
+            // => The next action is executed immediately without waiting for end of current task to finish
+            // (타이머 작업이 끝날 때까지 멈추지 않고 바로 다음 작업 실행)
+        }
+
+        let timer2 = null;
+
+        function startClock() {
+            // setInterval(function-to-run, milisec);
+            timer2 = setInterval(function() {
+                // Display time on #area1 (hh : mm : ss)  현재 시간을 #area1 영역에 출력
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+
+                document.getElementById("area1").textContent = 
+                        `${hours} : ${minutes} : ${seconds}`;
+            }, 1000);
+        }
+
+        function stopClock() {
+            // Stop(clear) existing timer
+            clearInterval(timer2);
+        }
+        
+    </script>
+
+    <h3>Open / Close Pop-up</h3>
+    <h4>window.open()</h4>
+    <button onclick="openPopup();">Open Naver Pop-up</button>
+
+    <script>
+        function openPopup() {
+            // window.open(URL-name, window-name, option)
+            const popup = window.open("https://www.naver.com", "Naver Pop-up", "width=500, height=500");
+
+            // Close pop-up after 2sec => setTimeout
+            setTimeout(function() {
+                // Close pop-up: popupObject.close();
+                popup.close();
+            }, 2000);
+        }
+    </script>
+    
+    <h3>URL Manipulation: location</h3>
+
+    <button onclick="console.log(location)">Check 'location' Object</button>
+    <button onclick="location.reload()">Reload Page</button>
+    <button onclick="location.href='https://www.naver.com'">Page Navigation</button>
+    <!-- Can use Back -->
+    <button onclick="location.replace('https://www.naver.com')">Page Redirection(Cannot Back)</button>
+    <!-- CANNOT use Back -->
+
+    <h3>Other Objects: history, screen, navigator</h3>
+    <button onclick="history.back();">Back</button>
+    <button onclick="console.log(screen);">Check 'screen' Object</button>
+    <button onclick="console.log(navigator)">Check 'navigator' Object</button>
+    
+</body>
+</html>

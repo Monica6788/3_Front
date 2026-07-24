@@ -14,18 +14,21 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* 푸터 영역을 바닥에 붙이기 위해 바디를  */
+    /* 푸터 영역을 바닥에 붙이기 위해 바디 디스플레이를 flex로 설정 후 메인 영역에 flex: 1; 추가 */
+
 }
 
-ul, li { list-style: none;}
+ul, li { list-style: none; /* bullet 없애기 */}
 
 a {
     text-decoration: none;
+    /* 링크 밑줄 없애기 */
     color: inherit;
 }
 
 a:hover {
     color: lightskyblue;
+    /* 링크 위에 커서를 댔을 때 글자색 변화 */
 }
 
 input {
@@ -53,21 +56,23 @@ header {
 
 /* logo */
 .logo {
-    font-size: 2rem;
+    font-size: 2rem; /* 최상위 글자 크기 2배로 지정 */
     font-weight: 900;
     color: midnightblue;
 }
 
 /* search bar */
 .search {
-    flex: 1;
+    flex: 1; 
+    /* 검색바의 너비가 창 크기에 맞춰 자동으로 채워지도록 지정 (최대너비 360px) */
     max-width: 360px;
     height: 3rem;
-    display: flex;
+    display: flex; /* 검색어 입력란과 검색 아이콘의 배치를 조절하기 위해 flexbox로 지정 */
 }
 
 .search input {
     flex: 1;
+    /* 검색바 너비가 늘어날 때, 검색 아이콘은 늘어나지 않고 검색어 입력란만 늘어나도록 지정 */
     border: 1px solid midnightblue;
     border-radius: 16px 0 0 16px;
     border-right: none;
@@ -76,6 +81,7 @@ header {
     font-size: 1rem;
 }
 
+/* 검색어 입력칸 클릭 시 테두리 색이 바뀌는 강조 효과 */
 .search input:focus {
     border-top: 1px solid #27c9ff;
     border-left: 1px solid #27c9ff;
@@ -94,6 +100,7 @@ header {
     width: 35px;
 }
 
+/* 검색 아이콘에 커서를 댔을 때 아이콘 색 변화 (배경색이 달라서 따로 지정) */
 .search button:hover {
     color: whitesmoke;
 }
@@ -105,27 +112,21 @@ header {
     gap: 8px;
 }
 
-.header-links a {
-    color: steelblue;
-}
-
-.header-links a:hover {
-    color: lightskyblue;
-}
-
 /*----------------------------- main area --------------------------------*/
 main {
     display: flex;
     gap: 10px;
 
     flex: 1;
+    /* 창의 높이를 키우고 줄일 때 메인 부분이 빈 공간을 채우도록 지정 */
 }
 
 main nav {
     padding: 24px 14px;
     width: 20vw;
     min-width: 250px;
-    max-width: 300px;
+    max-width: 350px;
+    /* 일정 크기 이상은 유지할 필요가 있으나 창의 크기에 따라 무한정 커질 필요는 없는 영역이므로 너비 범위 지정 */
 }
 
 main section {
@@ -152,17 +153,19 @@ main section {
     max-width: 100%;
     height: auto;
     display: block;
+
 }
 
 .menu .user-info .img-block {
     position: relative;
+    /* 수정, 삭제버튼(자식요소)의 위치 지정에 기준으로 사용하기 위해 부모요소로 지정 */
 }
 
 .menu .user-info .update-delete {
     position: absolute;
     top: 4px;
     right: 4px;
-    display: none;
+    display: none; /* 평소엔 안 보이게 가림 */
 }
 
 .menu .user-info .img-block:hover .update-delete {
@@ -182,6 +185,7 @@ main section {
 .menu .add-plan > li {
     display: flex;
     justify-content: space-between;
+    /* 메뉴 이름과 + 버튼이 양 사이드로 가도록 지정 */
 }
 
 .menu .file-save-load {
@@ -210,12 +214,15 @@ main section {
 
     position: relative;
     transition: all 0.3s ease;
+    /* 아래의 transform이 더 이상 감지되지 않아도 뚝 떨어지지 않고 천천히 내려오게끔 설정 */
 }
 
 .blocks .block:hover {
     transform: translateY(-5px);
+    /* 커서를 댔을 때 위로 약간 올라가도록 설정 */
 }
 
+/* 일정 id별로 다른 색상 지정 */
 .blocks #period {
     border-left: 16px solid cyan;
 }

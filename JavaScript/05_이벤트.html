@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Event</title>'
+    
+    <style>
+        /*
+            Apply sytles to 'area' class
+            - border: 1px, solid, color
+            - width: 300px
+            - min-height: 50px
+            - padding: 8px
+            - margin: 8px 0
+        */
+        .area {
+            border: 1px, solid, dodgerblue;
+            width: 300px;
+            min-height: 50px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>JavaScript Event</h1>
+    <p>
+        Event: user action or change of status occurred on browser <br>
+                (click, keydown, keyup, drag, submit, load) <br>
+        Event Handler: A callback function when specific event occurs
+    </p>
+
+    <h3>[1] Classic Event Model</h3>
+    <b>element.onclick = function</b>
+    <p>
+        Only one eventHandler can be registered per one event. (Overwrited) <br>
+        Can be removed by 'onclick = null'
+    </p>
+
+    <button id="btn1">Run</button>
+    <button id="btn2">Remove Event</button>
+    <div class="area" id="area1">
+
+    </div>
+
+    <script>
+        // Select three elements: #btn1, #btn2, #area1
+        const btn1 = document.querySelector("#btn1");
+        const btn2 = document.querySelector("#btn2");
+        const area1 = document.querySelector("#area1");
+
+        // console.log(btn1, btn2, area1);
+
+        // Register an event handler on [Run] button
+        btn1.onclick = function () {
+            // Append content on #area1  
+            area1.innerHTML += "[Run] button has been clicked.<br>";
+        }
+
+        // Register an eventhandler on [Remove Event] button
+        btn2.onclick = function() {
+            // Remove the event handler for [Run] button
+            btn1.onclick = null;
+
+            // Append content on #area1
+            area1.innerHTML += "The event handler for [Run] button has been removed.<br>"
+        }
+    </script>
+
+    <h3>Standard Event Model</h3>
+    <h4>element.addEventListener(event-name, handler)</h4>
+    <p>
+        Can register multiple event handlers for the same event. <br>
+        A specific event handler can be removed by 'removeEventListener()' method.
+    </p>
+    
+    <button id="btn3">Run</button>
+    <div class="area" id="area2"></div>
+
+    <script>
+        const btn3 = document.getElementById("btn3");
+        const area2 = document.getElementById("area2");
+
+        // Define event handler function
+        function handler1() {
+            // Append content on #area2
+            area2.innerHTML += "handler1 function is running...<br>";
+        }
+
+        function handler2() {
+            // Append content to #area2
+            area2.innerHTML += "handler2 function is running...<br>";
+        }
+
+        // Register an event handler for [Run] button onclick
+        btn3.addEventListener('click', handler1);
+        btn3.addEventListener('click', handler2);
+
+        // Remove the event handler for [Run] button
+        // Remove handler1
+        btn3.removeEventListener('click', handler1);
+        // When removing an event handler
+        // you MUST transfer "same" memory reference as the one passed when registering it
+
+        // Anonymous arrow function: () => {}
+        // CANNOT be reomved because it creates new event handler insatnce every time.
+
+        // mouse enter event: mouseenter
+        btn3.addEventListener('mouseenter', () => {
+            console.log("mouse enters!");
+        });
+        btn3.removeEventListener('mouseenter', () => {
+            console.log("mouse enters!");
+            // => Not Removed!
+        });
+    </script>
+
+    <h3>Event Object</h3>
+    <h4>target / currentTarget</h4>
+
+    <button id="btn4">
+        <span>span in button</span>
+    </button>
+    <div class="area" id="area3"></div>
+
+    <script>
+        const btn4 = document.querySelector("#btn4");
+
+        // btn4.addEventListener('click', function(event) {
+        //     console.log(event.target);
+        //     console.log(event.currentTarget);
+
+            
+        //     // event.target: The lowest-level element that actually triggered the event
+               // => (the element actually clicked)
+        //     // event.currentTarget: The element to which the event handler is attached
+            
+
+        //     console.log(this);
+        //     // Target for general function
+        //     // In an event handler function, it refers to the target element attached(such as currentTarget)
+        // });
+
+        btn4.addEventListener("click", (event) => {
+            console.log(event.target);
+            console.log(event.currentTarget);
+            console.log(this);
+            // Using 'this' in an arrow function
+            // : Points the window object
+            // => To target the element to which the event handler is attached: Use currentTarget instead
+
+            document.querySelector("#area3").textContent =
+                            `target: ${event.target.tagName} / currentTarget: ${event.currentTarget.tagName}`;
+        });
+    </script>
+
+    <h3>Prevent Default Actions</h3>
+    <h4>event.preventDefault</h4>
+
+    <form id="my-form">
+        <!--
+            If attribute 'action' is not specified
+            => Reload the current page when [Submit] button clicked (like pressing [F5])
+        -->
+        <input type="text" placeholder="Enter ID">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="area" id="area4"></div>
+    <script>
+        // target: form tag
+        const myForm = document.getElementById("my-form");
+
+        // Submitting form event: submit
+        myForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // e.preventDefault() prevents default actions
+
+            document.getElementById("area4").textContent =
+                "Detect form submit event! Prevent F5";
+        });
+    </script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

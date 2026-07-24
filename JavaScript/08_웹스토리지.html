@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+
+    <style>
+        .area {
+            border: 1px, groove, dodgerblue;
+            width: 300px;
+            min-height: 50px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Storage</h1>
+    <p>
+        A storage space inside the browser where data is stored as a Key-Value pairs <br>
+        - localStorage: Permanent Storage (Data is maintained even if the browser/tab is closed) <br>
+        - sessionStorage: Tab-level Storage (Data is deleted when the tab is closed) <br>
+        - Major Methods: setItem(Key, Value), getItem(Key, Value), removeItem(Key), clear() <br>
+        - [Note] Web Storage can only store data in STRING format
+    </p>
+    <p>
+        브라우저 내부에 데이터를 키-값 쌍으로 저장하는 공간 <br>
+        로컬 스토리지: 영구 저장(브라우저나 탭을 닫아도 데이터가 유지됨) <br>
+        세션 스토리지: 탭 단위 저장(해당 탭을 닫으면 데이터가 삭제됨.) <br>
+        주요 메서드: setItem(k, v), getItem(k), remove(k), clear() <br>
+        참고: 웹 스토리지는 "문자열" 형태의 데이터만 저장할 수 있음
+    </p>
+
+    <h3>localStorage</h3>
+    <p>
+        Used for data that needs to be retained even if the browser closed or reopened <br>
+        - User settings: dark mode/light mode, language preferences, etc <br>
+        - Guest shopping cart: Temporarily storing shopping list data before login <br>
+        - "Do not show agian today" option: Saving popup expiration time and status
+    </p>
+    <p>
+        브라우저를 닫거나 다시 열어도 유지되어야 하는 데이터에 사용 <br>
+        - 사용자 설정: 다크모드/라이트모드, 언어설정 등 <br>
+        - 비회원 장바구니: 로그인 전 장바구니 데이터를 임시보관 <br>
+        - 오늘 하루 이 창 보지 않기: 팝업창 만료 시간 및 상태 저장
+    </p>
+
+    <input type="text" id="memo">
+    <button onclick="saveMemo();">SAVE</button>
+    <button onclick="loadMemo();">READ</button>
+    <button onclick="removeMemo();">REMOVE</button>
+    <div class="area" id="area1"></div>
+
+    <script>
+        function saveMemo() {
+            // Save the entered value in localStorage (key: memo, value: entered-value)
+            // 입력된 값을 로컬스토리지에 저장 (key: memo, value: 입력된값)
+            const memoValue = document.getElementById("memo").value;
+            localStorage.setItem("memo", memoValue);
+            
+            // Display "SAVE completed" on #area1
+            // #area1 영역에 "저장 완료" 출력
+            document.getElementById("area1").textContent = "SAVE completed";
+        }
+
+        function loadMemo() {
+            // Read the value saved in localStorage
+            // 로컬 스토리지에 저장된 값을 조회
+            const value = localStorage.getItem("memo");
+
+            // Display on #area1
+            // If saved data exists: "Result: XXX"
+            // If no saved data exists: "No saved data exists" (null)
+            // #area1 영역에 출력
+            //      - 저장된 값이 있으면 "조회결과: XXX" 
+            //      - 저장된 값이 없으면 "저장된 값이 없습니다." -> null
+            const area1 = document.getElementById("area1");
+
+            if (value != null) {
+                area1.textContent = "Result: " + value;
+            } else {
+                area1.textContent = "No saved data exists";
+            }
+        }
+
+        function removeMemo() {
+            // Remove the "memo" item from localStorage
+            // 로컬 스토리지에서 "memo"에 해당하는 값을 제거
+            localStorage.removeItem("memo");
+
+            // Display "REMOVE completed" on #area1
+            // #area1 영역에 "삭제 완료" 출력
+            document.getElementById("area1").textContent = "REMOVE completed";
+
+        }
+    </script>
+
+    <h3>sessionStorage</h3>
+    <p>
+        Used when data should not remain permanently,
+        or to store temporarily while the current tab is open <br>
+        - Form auto-save: Retain typed content even if the page is accidently reloaded while writing <br>
+        - Preserving list state: Restore scroll position and filter conditons when returning from the detail page
+    </p>
+    <p>
+        데이터가 영구적으로 남으면 안 되거나, 현재 탭이 유지되는 동안만 일시적으로 보관할 때 사용 <br>
+        - 작성 폼 백업: 게시글 작성 중 실수로 새로고침을 해도 작성 중인 내용 유지 <br>
+        - 목록 상태 유지: 상품 목록 스크롤 위치 및 필터 조건을 유지하면서 상세 페이지에서 돌아왔을 때 복원
+    </p>
+
+    <button onclick="saveMemo2();">SAVE</button>
+    <button onclick="loadMemo2();">READ</button>
+    <div class="area" id="area2"></div>
+
+    <script>
+        // sessionStorage use same API methods with localStorage
+        // setItem(Key, Value), getItem(Key), removeItem(Key)
+        function saveMemo2() {
+            sessionStorage.setItem("memo2", "Hamburger");
+
+            document.getElementById("area2").textContent = "SAVE completed";
+        }
+
+        function loadMemo2() {
+            document.getElementById("area2").textContent = sessionStorage.getItem("memo2");
+        }
+    </script>
+
+    <h3>Remove All: clear</h3>
+    <button onclick="localStorage.clear();">Clear localStorage</button>
+    <button onclick="sessionStorage.clear();">Clear sessionStorage</button>
+    
+</body>
+</html>
